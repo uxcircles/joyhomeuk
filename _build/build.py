@@ -334,7 +334,7 @@ def build_index():
       <div class="wrap hero-grid">
         <div>
           <p class="eyebrow">英國物業顧問 · 自 2015 年</p>
-          <h1>在英國買樓租屋，<br>有人在當地<br><em>替你睇清楚</em></h1>
+          <h1>在英國買樓租屋<br>有人在當地<br><em>替你睇清楚</em></h1>
           <p class="lead">JoyHome 是扎根英國多年、正式註冊的物業顧問，不是剛到埗的新移民。由搜盤、睇樓、議價到收樓，我們以廣東話全程跟進，香港及海外客戶都適用。</p>
           <div class="btn-row">
             <a class="btn btn-primary" href="contact.html">預約諮詢</a>
@@ -369,7 +369,7 @@ def build_index():
       <div class="wrap">
         <div class="head">
           <p class="eyebrow">我們的不同之處</p>
-          <h2>不只是幫你找樓，<br>而是站在你這一邊</h2>
+          <h2>不只是幫你找樓<br>而是站在你這一邊</h2>
           <p class="lead">英國的地產代理代表的是賣家。JoyHome 代表的是你：一個在英國生活多年、熟悉社區的顧問。</p>
         </div>
         <div class="diff-grid">
@@ -411,7 +411,7 @@ def build_index():
       <div class="wrap">
         <div class="head">
           <p class="eyebrow">服務流程</p>
-          <h2>三步，找到理想的安樂窩</h2>
+          <h2>三步 找到理想的安樂窩</h2>
         </div>
         <ol class="steps">
           <li class="reveal"><h3>搜尋及諮詢</h3><p class="step-sub">了解心儀地區、位置及物業種類</p><p>先聽你的需要：家庭成員、校網、通勤、預算和時間表，再為你篩選合適的地區和樓盤。</p></li>
@@ -456,7 +456,7 @@ def build_index():
       <div class="wrap">
         <div class="head center">
           <p class="eyebrow">合作伙伴及認證</p>
-          <h2>守法正規，客戶款項受保障</h2>
+          <h2>守法正規 客戶款項受保障</h2>
         </div>
         <div class="accred" style="margin-bottom:48px">
           <a href="https://www.joyhomeuk.com/wp-content/uploads/2020/07/UKALA.pdf" target="_blank" rel="noopener"><img src="assets/img/ukala.webp" alt="UKALA" loading="lazy"><div><b>UKALA 會員</b><span>UK Association of Letting Agents</span></div></a>
@@ -477,7 +477,7 @@ def build_index():
 def build_services():
     extras = ["代收物業 Inspection", "到埗前代購物資及必需品", "代購及組裝傢俬", "家居清潔", "機場接送",
               "代收鎖匙 Key collection", "Check-in 及 Inventory check", "代收包裹 / 等候送貨"]
-    body = f"""{page_hero("服務及收費", "服務及收費", "收費透明，<br>成功才收大部分費用", "所有價錢以英鎊計算，另加 VAT。買樓及租樓服務大部分費用在成功後才收取；測量師、按揭經紀及律師費用由客人自行支付。")}
+    body = f"""{page_hero("服務及收費", "服務及收費", "收費透明<br>成功才收大部分費用", "所有價錢以英鎊計算，另加 VAT。買樓及租樓服務大部分費用在成功後才收取；測量師、按揭經紀及律師費用由客人自行支付。")}
 
     <div class="subnav"><div class="wrap"><ul>
       <li><a href="#consult">諮詢</a></li><li><a href="#rent">租樓</a></li><li><a href="#buy">買樓</a></li><li><a href="#viewing">代睇樓</a></li><li><a href="#extras">外加代辦</a></li>
@@ -600,7 +600,7 @@ def build_buy():
          "這幾區整體確實受歡迎，但不能一概而論，區內也有不宜居住的街道。最常見的陷阱就是只看網上相片便成交，結果貨不對辦、遲遲租不出。一定要有人親身睇樓。"),
     ]
 
-    body = f"""{page_hero("英國買樓", "英國買樓", "英國買樓，<br>流程、費用、稅務一次看清", "同一筆預算，在英國可以住得寬敞得多。但按揭、印花稅、Leasehold 等規則與香港很不同。JoyHome 由選區到收樓全程跟進，替你避開陷阱。", "assets/img/buy.webp", "英國新建獨立屋社區")}
+    body = f"""{page_hero("英國買樓", "英國買樓", "英國買樓<br>流程、費用、稅務一次看清", "同一筆預算，在英國可以住得寬敞得多。但按揭、印花稅、Leasehold 等規則與香港很不同。JoyHome 由選區到收樓全程跟進，替你避開陷阱。", "assets/img/buy.webp", "英國新建獨立屋社區")}
 
     <div class="subnav"><div class="wrap"><ul>
       <li><a href="#areas">熱門地區</a></li><li><a href="#process">買樓流程</a></li><li><a href="#tax">印花稅</a></li><li><a href="#mk">Milton Keynes</a></li><li><a href="#faq">常見問題</a></li>
@@ -627,7 +627,7 @@ def build_buy():
       <div class="wrap">
         <div class="head">
           <p class="eyebrow">買樓流程</p>
-          <h2>一手樓花與二手樓，步驟不一樣</h2>
+          <h2>一手樓花與二手樓 步驟不一樣</h2>
         </div>
         <div class="tabs" role="tablist" aria-label="買樓類型">
           <button role="tab" id="tab-resale" aria-controls="panel-resale" aria-selected="true">二手樓</button>
@@ -744,14 +744,14 @@ def build_rent():
         ("獨立屋、排屋、公寓，哪種性價比最高？",
          "排屋較矮較舊，要留意防盜、滲水和設備老化，所以租金相對較低；新式公寓較新淨，治安和結構問題較少。最終要按地區、預算、校網和交通一併考慮。"),
     ]
-    body = f"""{page_hero("英國租屋", "英國租屋", "未到埗，<br>先找好落腳的家", "優質租盤放出不久便有人出價，3 至 4 星期內完成租約。建議到埗前預留 2 至 3 個月。JoyHome 替你搜盤、代睇、準備文件，跟進到簽約入住。", "assets/img/rent.webp", "倫敦街景")}
+    body = f"""{page_hero("英國租屋", "英國租屋", "未到埗<br>先找好落腳的家", "優質租盤放出不久便有人出價，3 至 4 星期內完成租約。建議到埗前預留 2 至 3 個月。JoyHome 替你搜盤、代睇、準備文件，跟進到簽約入住。", "assets/img/rent.webp", "倫敦街景")}
 
     <section class="section">
       <div class="wrap">
         <div class="grid-2" style="align-items:start;gap:clamp(32px,6vw,80px)">
           <div>
             <p class="eyebrow">租屋流程</p>
-            <h2>英國租屋，比香港多幾個步驟</h2>
+            <h2>英國租屋 比香港多幾個步驟</h2>
             <p class="lead">業主會對租客做 Reference check，確保你有能力交租。剛到埗未有穩定收入的話，要預早準備證明文件。</p>
             <p><a class="link-arrow" href="services.html#rent">租樓服務收費：成功租樓 £880 + VAT</a></p>
           </div>
@@ -783,7 +783,7 @@ def build_rent():
         <div class="split-media reveal"><img src="assets/img/rent-london.webp" alt="倫敦西敏寺及大笨鐘" loading="lazy" width="768" height="516"></div>
         <div>
           <p class="eyebrow">倫敦及其他地區</p>
-          <h2>倫敦租屋，或者其他城市？</h2>
+          <h2>倫敦租屋 或者其他城市？</h2>
           <p>倫敦租金全國最高，但工作和學校選擇最多；倫敦以外的城市租金一般較相宜，空間更大。我們熟悉 North London、Hertfordshire、Milton Keynes、Luton 等地區，其他城市亦可安排。</p>
           <p>先租後買，是很多家庭的選擇：住一段時間、熟悉社區後，再決定在哪裡置業。</p>
           <a class="btn btn-primary" href="contact.html">告訴我們你的租屋需要</a>
@@ -816,7 +816,7 @@ def build_management():
         ("JHPM 會定期檢查物業嗎？", "會。我們通常每 6 個月檢查一次物業，並把結果匯報給業主。"),
         ("我住在海外，可以委託你們嗎？", "可以。JHPM 自成立以來已協助很多海外業主。我們已登記 Non-Resident Landlord Scheme，方便海外業主登記成為非居民業主。"),
     ]
-    body = f"""{page_hero("物業管理", "英國物業管理 · JHPM", "人在海外，<br>英國物業照樣打理妥當", "JoyHome Property Management（JHPM）是我們的姊妹公司，2021 年 1 月成立，為 UKALA 及 PRS 註冊成員。我們替在英國投資的業主放租、收租及管理物業。", "assets/img/manage.webp", "英國半獨立屋外觀")}
+    body = f"""{page_hero("物業管理", "英國物業管理 · JHPM", "人在海外<br>英國物業照樣打理妥當", "JoyHome Property Management（JHPM）是我們的姊妹公司，2021 年 1 月成立，為 UKALA 及 PRS 註冊成員。我們替在英國投資的業主放租、收租及管理物業。", "assets/img/manage.webp", "英國半獨立屋外觀")}
 
     <section class="section">
       <div class="wrap">
@@ -872,7 +872,7 @@ def build_renovation():
         ("瓦工", ["廚房及浴室瓷磚", "地台及牆身瓷磚"]),
     ]
     trade_html = "\n".join(f"""          <div class="card reveal"><h3>{t}</h3><ul>{''.join(f'<li>{i}</li>' for i in items)}</ul></div>""" for t, items in trades)
-    body = f"""{page_hero("英國裝修", "JoyHome Builder", "把英國的屋，<br>裝修成你的家", "JoyHome Builder 是 JoyHome Service Ltd 旗下的裝修團隊，提供浴室、廚房、全屋翻新、擴建及溫室工程。本地英國師傅加上香港背景的項目經理，溝通無障礙。", "assets/img/reno-kitchen.webp", "裝修完成的開放式廚房")}
+    body = f"""{page_hero("英國裝修", "JoyHome Builder", "把英國的屋<br>裝修成你的家", "JoyHome Builder 是 JoyHome Service Ltd 旗下的裝修團隊，提供浴室、廚房、全屋翻新、擴建及溫室工程。本地英國師傅加上香港背景的項目經理，溝通無障礙。", "assets/img/reno-kitchen.webp", "裝修完成的開放式廚房")}
 
     <section class="section">
       <div class="wrap">
@@ -894,7 +894,7 @@ def build_renovation():
       <div class="wrap">
         <div class="head">
           <p class="eyebrow">為甚麼選擇 JoyHome Builder</p>
-          <h2>品質、預算、溝通，一併照顧</h2>
+          <h2>品質、預算、溝通 一併照顧</h2>
         </div>
         <div class="grid-3">
           <div class="card reveal"><div class="card-icon">{icon('home')}</div><h3>質量</h3><p>以最高標準施工，提升物業的舒適度和價值。</p></div>
@@ -911,7 +911,7 @@ def build_renovation():
       <div class="wrap">
         <div class="head">
           <p class="eyebrow">服務範圍</p>
-          <h2>各類工種，一個團隊完成</h2>
+          <h2>各類工種 一個團隊完成</h2>
           <p class="lead">浴室由更換潔具到全濕區（Wet room）、廚房由小空間到開放式設計、房屋擴建由加建房間到溫室，都可以處理。</p>
         </div>
         <div class="trades">
