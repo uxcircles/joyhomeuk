@@ -9,7 +9,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 BASE = "https://uxcircles.github.io/joyhomeuk/"
 OFFICIAL = "https://joyhomeuk.com/"
-CSS_V = 1
+CSS_V = 2
 JS_V = 1
 
 PHONE = "+44 7511 817812"

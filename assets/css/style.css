@@ -64,13 +64,11 @@ ul { padding-left: 1.2em; }
   font-size: 13px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase;
   color: var(--gold-text); margin-bottom: 14px;
 }
-.eyebrow::before { content: ""; width: 24px; height: 1px; background: currentColor; }
 .bg-navy .eyebrow { color: var(--gold); }
 .lead { font-size: clamp(17px, 1.6vw, 19px); color: var(--muted); max-width: 40em; }
 .bg-navy .lead { color: #B9C6D6; }
 .head { max-width: 760px; margin-bottom: clamp(32px, 5vw, 56px); }
 .head.center { margin-left: auto; margin-right: auto; text-align: center; }
-.head.center .eyebrow::after { content: ""; width: 24px; height: 1px; background: currentColor; }
 
 /* Buttons */
 .btn {
