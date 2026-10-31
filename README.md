@@ -18,9 +18,16 @@
 | `renovation.html` | 英國裝修（JoyHome Builder） |
 | `contact.html` | 聯絡：查詢表會把資料整理成 WhatsApp 或電郵訊息，不需要伺服器 |
 
+## 語言
+
+| 路徑 | 版本 |
+|---|---|
+| `/` | 繁體中文（預設） |
+| `/en/` | English，同樣 7 頁，頁首「中 / EN」按鈕互相切換 |
+
 ## 修改方式
 
-所有頁面由 `_build/build.py` 生成（共用頁首、頁尾、聯絡資料）。改內容後執行：
+所有頁面由 `_build/build.py` 生成（共用頁首、頁尾、聯絡資料）；英文內容在 `_build/en.py`，介面文字在 `build.py` 的 `UI`。改內容後執行：
 
 ```bash
 python3 _build/build.py

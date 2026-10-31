@@ -15,7 +15,7 @@
   if (burger && nav) {
     function setMenu(open) {
       burger.setAttribute('aria-expanded', String(open));
-      burger.setAttribute('aria-label', open ? '關閉選單' : '開啟選單');
+      burger.setAttribute('aria-label', burger.getAttribute(open ? 'data-close' : 'data-open'));
       nav.classList.toggle('is-open', open);
       document.body.style.overflow = open ? 'hidden' : '';
     }
@@ -78,14 +78,18 @@
   if (form) {
     var WA = form.getAttribute('data-wa');
     var MAIL = form.getAttribute('data-mail');
+    var en = doc.lang.indexOf('en') === 0;
     function compose() {
       var f = new FormData(form);
-      var lines = ['你好 JoyHome，我想查詢：'];
+      var L = en
+        ? { hi: 'Hello JoyHome, I would like to ask about:', svc: 'Service', area: 'Area', when: 'Timing', budget: 'Budget', name: 'Name', reply: 'Contact', sep: ': ', join: ', ' }
+        : { hi: '你好 JoyHome，我想查詢：', svc: '服務', area: '地區', when: '預計時間', budget: '預算', name: '名字', reply: '聯絡方法', sep: '：', join: '、' };
+      var lines = [L.hi];
       var svc = f.getAll('service');
-      if (svc.length) lines.push('服務：' + svc.join('、'));
-      [['area', '地區'], ['when', '預計時間'], ['budget', '預算'], ['name', '名字'], ['reply', '聯絡方法']].forEach(function (p) {
-        var v = (f.get(p[0]) || '').toString().trim();
-        if (v) lines.push(p[1] + '：' + v);
+      if (svc.length) lines.push(L.svc + L.sep + svc.join(L.join));
+      ['area', 'when', 'budget', 'name', 'reply'].forEach(function (k) {
+        var v = (f.get(k) || '').toString().trim();
+        if (v) lines.push(L[k] + L.sep + v);
       });
       var msg = (f.get('message') || '').toString().trim();
       if (msg) lines.push('', msg);
@@ -97,7 +101,7 @@
       var via = e.submitter && e.submitter.value === 'email' ? 'email' : 'wa';
       var text = compose();
       if (via === 'email') {
-        window.location.href = 'mailto:' + MAIL + '?subject=' + encodeURIComponent('JoyHome 網站查詢') + '&body=' + encodeURIComponent(text);
+        window.location.href = 'mailto:' + MAIL + '?subject=' + encodeURIComponent(en ? 'JoyHome website enquiry' : 'JoyHome 網站查詢') + '&body=' + encodeURIComponent(text);
       } else {
         window.open('https://wa.me/' + WA + '?text=' + encodeURIComponent(text), '_blank', 'noopener');
       }

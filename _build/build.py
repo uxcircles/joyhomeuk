@@ -4,13 +4,14 @@
 Shared header / footer live here; each page's body is a function below.
 Run from the repo root:  python3 _build/build.py
 """
+import re
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 BASE = "https://uxcircles.github.io/joyhomeuk/"
 OFFICIAL = "https://joyhomeuk.com/"
-CSS_V = 2
-JS_V = 1
+CSS_V = 3
+JS_V = 2
 
 PHONE = "+44 7511 817812"
 TEL = "+447511817812"
@@ -21,6 +22,34 @@ PRS_NO = "PRS029811"
 AREAS = ["North London", "Milton Keynes", "St Albans", "Hertfordshire", "Surrey", "Luton",
          "Northampton", "Birmingham", "Nottingham", "Leeds", "Warrington"]
 
+LANG = "zh"  # en.py switches this to "en"
+
+UI = {
+    "zh": dict(skip="跳到主要內容", concept='網站改版概念設計，並非 <a href="{o}" target="_blank" rel="noopener">JoyHome UK 官方網站</a>。',
+               home="JoyHome UK 主頁", menu="主選單", wa_ask="WhatsApp 查詢", open_menu="開啟選單", close_menu="關閉選單",
+               about="2015 年成立的英國物業顧問。以廣東話為香港及海外客戶處理英國買樓、租屋、物業管理及裝修。",
+               f_svc="服務", f_acc="認證", f_contact="聯絡", ukala="UKALA 會員", cmp="客戶款項保障 CMP", cmh="客戶款項處理指引",
+               prs="PRS 編號", hours="星期一至五 9:00–17:00（英國時間）", official="官方網站", by="改版概念設計",
+               quick="快速聯絡", call="致電", mail="電郵", crumbs="頁面位置", crumb_home="主頁", book="預約諮詢", wa_us="WhatsApp 我們",
+               faq="常見問題", faq_more="問題不在這裡？直接問我們", form="填寫查詢表",
+               cta_h="想先聽聽專業意見？", cta_p="告訴我們你的地區、預算和時間表，顧問會以廣東話回覆，替你判斷下一步應該怎樣走。",
+               lang_label="English", lang_short="EN", lang_code="en"),
+    "en": dict(skip="Skip to main content", concept='Concept redesign. Not the <a href="{o}" target="_blank" rel="noopener">official JoyHome UK website</a>.',
+               home="JoyHome UK home", menu="Main menu", wa_ask="WhatsApp us", open_menu="Open menu", close_menu="Close menu",
+               about="UK property consultants since 2015, helping families from Hong Kong and overseas buy, rent, let and renovate homes in England.",
+               f_svc="Services", f_acc="Accreditation", f_contact="Contact", ukala="UKALA member", cmp="Client Money Protection", cmh="Client money handling guide",
+               prs="PRS number", hours="Mon–Fri 9:00–17:00 (UK time)", official="Official website", by="Concept redesign by",
+               quick="Quick contact", call="Call", mail="Email", crumbs="Breadcrumb", crumb_home="Home", book="Book a consultation", wa_us="WhatsApp us",
+               faq="FAQ", faq_more="Can't find your question? Ask us", form="Send an enquiry",
+               cta_h="Want a professional opinion first?", cta_p="Tell us the area, budget and timeline. A consultant will reply in English or Cantonese and suggest your next step.",
+               lang_label="繁體中文", lang_short="中", lang_code="zh-Hant-HK"),
+}
+
+
+def T(key):
+    return UI[LANG][key]
+
+
 NAV = [
     ("services.html", "服務及收費"),
     ("buy.html", "英國買樓"),
@@ -29,6 +58,18 @@ NAV = [
     ("renovation.html", "英國裝修"),
     ("contact.html", "聯絡我們"),
 ]
+NAV_EN = [
+    ("services.html", "Services & fees"),
+    ("buy.html", "Buying"),
+    ("rent.html", "Renting"),
+    ("management.html", "Lettings"),
+    ("renovation.html", "Renovation"),
+    ("contact.html", "Contact"),
+]
+
+
+def nav_items():
+    return NAV if LANG == "zh" else NAV_EN
 
 SPRITE = """<svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol>
@@ -65,36 +106,38 @@ def ext():
     return icon("ext")
 
 
-def header(active):
+def header(active, slug):
+    alt = ("en/" if LANG == "zh" else "../") + slug
     items = "\n".join(
         f'          <li><a href="{href}"{" aria-current=\"page\"" if href == active else ""}>{label}</a></li>'
-        for href, label in NAV)
-    return f"""  <a class="skip" href="#main">跳到主要內容</a>
+        for href, label in nav_items())
+    return f"""  <a class="skip" href="#main">{T("skip")}</a>
   {SPRITE}
   <div class="concept-bar" role="note">
     <div class="wrap concept-inner">
-      <p><span class="concept-tag">Concept</span><span class="concept-long">網站改版概念設計，並非 <a href="{OFFICIAL}" target="_blank" rel="noopener">JoyHome UK 官方網站</a>。</span></p>
+      <p><span class="concept-tag">Concept</span><span class="concept-long">{T("concept").format(o=OFFICIAL)}</span></p>
       <a href="https://ux-circles.com/web" target="_blank" rel="noopener">Designed by <strong>UX CIRCLES</strong> {ext()}</a>
     </div>
   </div>
   <header class="site-header">
     <div class="wrap header-inner">
-      <a class="brand" href="index.html" aria-label="JoyHome UK 主頁">
+      <a class="brand" href="index.html" aria-label="{T("home")}">
         {MARK}
         <span class="brand-word"><span class="brand-name">JoyHome UK</span><span class="brand-tag">Bring Home the Joy</span></span>
       </a>
-      <nav class="nav" id="site-nav" aria-label="主選單" data-nav>
+      <nav class="nav" id="site-nav" aria-label="{T("menu")}" data-nav>
         <ul class="nav-list">
 {items}
         </ul>
         <div class="nav-extra">
-          <a class="btn btn-wa" href="https://wa.me/{WA}" target="_blank" rel="noopener">{icon("wa")}WhatsApp 查詢</a>
+          <a class="btn btn-wa" href="https://wa.me/{WA}" target="_blank" rel="noopener">{icon("wa")}{T("wa_ask")}</a>
           <a class="btn btn-ghost" href="tel:{TEL}">{icon("phone")}{PHONE}</a>
         </div>
       </nav>
       <div class="header-cta">
+        <a class="lang" href="{alt}" lang="{T("lang_code")}" hreflang="{T("lang_code")}" aria-label="{T("lang_label")}">{T("lang_short")}</a>
         <a class="btn btn-wa" href="https://wa.me/{WA}" target="_blank" rel="noopener">{icon("wa")}WhatsApp</a>
-        <button class="burger" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="開啟選單"><span></span><span></span><span></span></button>
+        <button class="burger" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="{T("open_menu")}" data-open="{T("open_menu")}" data-close="{T("close_menu")}"><span></span><span></span><span></span></button>
       </div>
     </div>
   </header>"""
@@ -102,62 +145,64 @@ def header(active):
 
 def footer():
     areas = " · ".join(AREAS)
-    links = "\n".join(f'          <li><a href="{h}">{l}</a></li>' for h, l in NAV[:5])
+    links = "\n".join(f'          <li><a href="{h}">{l}</a></li>' for h, l in nav_items()[:5])
     return f"""  <footer class="site-footer">
     <div class="wrap">
       <div class="footer-grid">
         <div>
-          <a class="brand" href="index.html" aria-label="JoyHome UK 主頁">
+          <a class="brand" href="index.html" aria-label="{T("home")}">
             {MARK}
             <span class="brand-word"><span class="brand-name">JoyHome UK</span><span class="brand-tag">Bring Home the Joy</span></span>
           </a>
-          <p>2015 年成立的英國物業顧問。以廣東話為香港及海外客戶處理英國買樓、租屋、物業管理及裝修。</p>
+          <p>{T("about")}</p>
           <div class="social"><a href="{FB}" target="_blank" rel="noopener" aria-label="JoyHome UK Facebook">{icon("fb")}</a><a href="https://wa.me/{WA}" target="_blank" rel="noopener" aria-label="WhatsApp">{icon("wa")}</a></div>
         </div>
         <div>
-          <h4>服務</h4>
+          <h4>{T("f_svc")}</h4>
           <ul>
 {links}
           </ul>
         </div>
         <div>
-          <h4>認證</h4>
+          <h4>{T("f_acc")}</h4>
           <ul>
-            <li><a href="https://www.joyhomeuk.com/wp-content/uploads/2020/07/UKALA.pdf" target="_blank" rel="noopener">UKALA 會員</a></li>
-            <li><a href="https://www.joyhomeuk.com/wp-content/uploads/2020/07/CMP.pdf" target="_blank" rel="noopener">客戶款項保障 CMP</a></li>
-            <li><a href="https://www.joyhomeuk.com/wp-content/uploads/2020/07/UKALA-Client-Money-Handling.pdf" target="_blank" rel="noopener">客戶款項處理指引</a></li>
-            <li>PRS 編號 {PRS_NO}</li>
+            <li><a href="https://www.joyhomeuk.com/wp-content/uploads/2020/07/UKALA.pdf" target="_blank" rel="noopener">{T("ukala")}</a></li>
+            <li><a href="https://www.joyhomeuk.com/wp-content/uploads/2020/07/CMP.pdf" target="_blank" rel="noopener">{T("cmp")}</a></li>
+            <li><a href="https://www.joyhomeuk.com/wp-content/uploads/2020/07/UKALA-Client-Money-Handling.pdf" target="_blank" rel="noopener">{T("cmh")}</a></li>
+            <li>{T("prs")} {PRS_NO}</li>
           </ul>
         </div>
         <div>
-          <h4>聯絡</h4>
+          <h4>{T("f_contact")}</h4>
           <ul>
             <li><a href="tel:{TEL}">{PHONE}</a></li>
             <li><a href="mailto:{EMAIL}">{EMAIL}</a></li>
-            <li>星期一至五 9:00–17:00（英國時間）</li>
+            <li>{T("hours")}</li>
           </ul>
           <p class="footer-areas">{areas}</p>
         </div>
       </div>
       <div class="footer-bottom">
         <p>© <span data-year>2026</span> JoyHome UK. All rights reserved.</p>
-        <p>官方網站 <a href="{OFFICIAL}" target="_blank" rel="noopener">joyhomeuk.com {ext()}</a> · 改版概念設計 <a href="https://ux-circles.com/web" target="_blank" rel="noopener">UX CIRCLES {ext()}</a></p>
+        <p>{T("official")} <a href="{OFFICIAL}" target="_blank" rel="noopener">joyhomeuk.com {ext()}</a> · {T("by")} <a href="https://ux-circles.com/web" target="_blank" rel="noopener">UX CIRCLES {ext()}</a></p>
       </div>
     </div>
   </footer>
 
-  <nav class="action-bar" aria-label="快速聯絡">
+  <nav class="action-bar" aria-label="{T("quick")}">
     <a class="is-wa" href="https://wa.me/{WA}" target="_blank" rel="noopener">{icon("wa")}WhatsApp</a>
-    <a href="tel:{TEL}">{icon("phone")}致電</a>
-    <a href="mailto:{EMAIL}">{icon("mail")}電郵</a>
+    <a href="tel:{TEL}">{icon("phone")}{T("call")}</a>
+    <a href="mailto:{EMAIL}">{icon("mail")}{T("mail")}</a>
   </nav>"""
 
 
 def page(slug, title, desc, body, active=None, preload=None):
-    url = BASE + ("" if slug == "index.html" else slug.replace(".html", ""))
+    path = "" if slug == "index.html" else slug.replace(".html", "")
+    zh_url, en_url = BASE + path, BASE + "en/" + path
+    url = zh_url if LANG == "zh" else en_url
     pre = f'\n  <link rel="preload" as="image" href="{preload}" fetchpriority="high">' if preload else ""
     html = f"""<!doctype html>
-<html lang="zh-Hant-HK" class="no-js">
+<html lang="{"zh-Hant-HK" if LANG == "zh" else "en-GB"}" class="no-js">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -166,6 +211,8 @@ def page(slug, title, desc, body, active=None, preload=None):
   <meta name="robots" content="noindex, nofollow">
   <meta name="theme-color" content="#F7F4EE">
   <link rel="canonical" href="{url}">
+  <link rel="alternate" hreflang="zh-Hant" href="{zh_url}">
+  <link rel="alternate" hreflang="en" href="{en_url}">
   <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="JoyHome UK">
@@ -180,7 +227,7 @@ def page(slug, title, desc, body, active=None, preload=None):
   <script>document.documentElement.classList.replace('no-js','js')</script>
 </head>
 <body>
-{header(active or slug)}
+{header(slug if active is None else active, slug)}
 
   <main id="main">
 {body}
@@ -191,19 +238,24 @@ def page(slug, title, desc, body, active=None, preload=None):
 </body>
 </html>
 """
-    (ROOT / slug).write_text(html, encoding="utf-8")
-    print("wrote", slug)
+    out = ROOT / slug
+    if LANG == "en":
+        html = re.sub(r'(?<![/\w.])assets/', '../assets/', html)
+        out = ROOT / "en" / slug
+        out.parent.mkdir(exist_ok=True)
+    out.write_text(html, encoding="utf-8")
+    print("wrote", out.relative_to(ROOT))
 
 
 def crumbs(label):
-    return f"""<nav class="crumbs" aria-label="頁面位置"><ol><li><a href="index.html">主頁</a></li><li aria-current="page">{label}</li></ol></nav>"""
+    return f"""<nav class="crumbs" aria-label="{T("crumbs")}"><ol><li><a href="index.html">{T("crumb_home")}</a></li><li aria-current="page">{label}</li></ol></nav>"""
 
 
 def page_hero(label, eyebrow, h1, lead, img=None, alt="", ctas=True):
     btns = f"""
           <div class="btn-row">
-            <a class="btn btn-primary" href="contact.html">預約諮詢</a>
-            <a class="btn btn-ghost" href="https://wa.me/{WA}" target="_blank" rel="noopener">{icon("wa")}WhatsApp 我們</a>
+            <a class="btn btn-primary" href="contact.html">{T("book")}</a>
+            <a class="btn btn-ghost" href="https://wa.me/{WA}" target="_blank" rel="noopener">{icon("wa")}{T("wa_us")}</a>
           </div>""" if ctas else ""
     media = f"""
         <div class="page-hero-media"><img src="{img}" alt="{alt}" width="1024" height="768"></div>""" if img else ""
@@ -235,27 +287,28 @@ def faq_section(title, lead, items, bg=""):
     return f"""    <section class="section{bg}" id="faq">
       <div class="wrap faq-wrap">
         <div class="head">
-          <p class="eyebrow">常見問題</p>
+          <p class="eyebrow">{T("faq")}</p>
           <h2>{title}</h2>
           <p class="lead">{lead}</p>
-          <a class="link-arrow" href="contact.html">問題不在這裡？直接問我們</a>
+          <a class="link-arrow" href="contact.html">{T("faq_more")}</a>
         </div>
 {faq(items)}
       </div>
     </section>"""
 
 
-def cta_band(h="想先聽聽專業意見？", p="告訴我們你的地區、預算和時間表，顧問會以廣東話回覆，替你判斷下一步應該怎樣走。"):
+def cta_band(h=None, p=None):
+    h, p = h or T("cta_h"), p or T("cta_p")
     return f"""    <section class="section tight">
       <div class="wrap">
         <div class="cta-band reveal">
           <div>
             <h2>{h}</h2>
             <p>{p}</p>
-            <p class="contact-lines">星期一至五 9:00–17:00（英國時間）· {EMAIL}</p>
+            <p class="contact-lines">{T("hours")} · {EMAIL}</p>
           </div>
           <div class="btn-row">
-            <a class="btn btn-gold" href="contact.html">填寫查詢表</a>
+            <a class="btn btn-gold" href="contact.html">{T("form")}</a>
             <a class="btn btn-ghost" href="https://wa.me/{WA}" target="_blank" rel="noopener">{icon("wa")}WhatsApp</a>
           </div>
         </div>
@@ -983,3 +1036,5 @@ if __name__ == "__main__":
     build_management()
     build_renovation()
     build_contact()
+    import en  # noqa: E402  English pages live in _build/en.py
+    en.build_all()
