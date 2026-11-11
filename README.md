@@ -2,7 +2,7 @@
 
 [joyhomeuk.com](https://joyhomeuk.com/) 的改版提案。純靜態網站（HTML / CSS / JS），不需要建置步驟，任何靜態主機都能直接部署。
 
-> **概念設計展示**：由 [UX CIRCLES](https://ux-circles.com/web) 設計，並非 JoyHome UK 官方網站。
+> **概念設計展示**：由 [UX CIRCLES](https://ux-circles.com/professionals) 設計，並非 JoyHome UK 官方網站。
 > 每頁頂端有「Concept」標示列，所有頁面設為 `noindex`，`robots.txt` 禁止搜尋引擎收錄。
 > 如果正式採用：刪掉 `_build/build.py` 裡的 `.concept-bar` 及 `noindex`，重新生成，並把 `robots.txt` 改回 `Allow: /`。
 

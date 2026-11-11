@@ -116,7 +116,7 @@ def header(active, slug):
   <div class="concept-bar" role="note">
     <div class="wrap concept-inner">
       <p><span class="concept-tag">Concept</span><span class="concept-long">{T("concept").format(o=OFFICIAL)}</span></p>
-      <a href="https://ux-circles.com/web" target="_blank" rel="noopener">Designed by <strong>UX CIRCLES</strong> {ext()}</a>
+      <a href="https://ux-circles.com/professionals" target="_blank" rel="noopener">Designed by <strong>UX CIRCLES</strong> {ext()}</a>
     </div>
   </div>
   <header class="site-header">
@@ -184,7 +184,7 @@ def footer():
       </div>
       <div class="footer-bottom">
         <p>© <span data-year>2026</span> JoyHome UK. All rights reserved.</p>
-        <p>{T("official")} <a href="{OFFICIAL}" target="_blank" rel="noopener">joyhomeuk.com {ext()}</a> · {T("by")} <a href="https://ux-circles.com/web" target="_blank" rel="noopener">UX CIRCLES {ext()}</a></p>
+        <p>{T("official")} <a href="{OFFICIAL}" target="_blank" rel="noopener">joyhomeuk.com {ext()}</a> · {T("by")} <a href="https://ux-circles.com/professionals" target="_blank" rel="noopener">UX CIRCLES {ext()}</a></p>
       </div>
     </div>
   </footer>
